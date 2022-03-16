@@ -67,6 +67,22 @@ class ImgToChunk():
                 canvas.create_image((0, 0), image=grid_photo_image, anchor='nw')
                 self.grid_canvases[row].append(canvas)
 
+        self.x_label = tkinter.Label(self.window, text='x: ')
+        self.x_label.config(font=('Courier', 12), width=20)
+        self.x_label.place(x=10, y=740)
+        self.y_label = tkinter.Label(self.window, text='y: ')
+        self.y_label.config(font=('Courier', 12), width=20)
+        self.y_label.place(x=210, y=740)
+        self.z_label = tkinter.Label(self.window, text='z: ')
+        self.z_label.config(font=('Courier', 12), width=20)
+        self.z_label.place(x=410, y=740)
+        self.roll_label = tkinter.Label(self.window, text='roll: ')
+        self.roll_label.config(font=('Courier', 12), width=20)
+        self.roll_label.place(x=610, y=740)
+        self.yaw_label = tkinter.Label(self.window, text='yaw: ')
+        self.yaw_label.config(font=('Courier', 12), width=20)
+        self.yaw_label.place(x=810, y=740)
+
         # self.x_line = None
         # self.y_line = None
         #
@@ -134,6 +150,12 @@ class ImgToChunk():
             self.yaw += 1
         elif key == 'g':  # Down
             self.yaw += -1
+
+        self.x_label['text'] = 'x: {:2f}'.format(self.cube_x)
+        self.y_label['text'] = 'y: {:2f}'.format(self.cube_y)
+        self.z_label['text'] = 'z: {:2f}'.format(self.cube_z)
+        self.roll_label['text'] = 'roll: {:2f}'.format(self.roll)
+        self.yaw_label['text'] = 'yaw: {:2f}'.format(self.yaw)
 
         view = numpy.eye(4, dtype=numpy.float32)
         glm.rotate(view, self.yaw, 0, 1, 0)
